@@ -9,9 +9,6 @@ import "dotenv/config";
 
 const PORT = 4000;
 
-console.log(`[Agent] ANTHROPIC_API_KEY: ${process.env.ANTHROPIC_API_KEY}`);
-console.log(`[Agent] GITHUB_TOKEN: ${process.env.GITHUB_TOKEN}`);
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -34,12 +31,7 @@ app.get("/messages", (_req, res) => {
   res.json(messages);
 });
 
-app.get("/debug", (_req, res) => {
-  res.json({
-    ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY ? `${process.env.ANTHROPIC_API_KEY.substring(0, 15)}...` : "NOT SET",
-    GITHUB_TOKEN: process.env.GITHUB_TOKEN ? "SET" : "NOT SET",
-  });
-});
+
 
 app.post("/message", async (req, res) => {
   const { message } = req.body;
